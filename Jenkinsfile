@@ -44,7 +44,7 @@ pipeline {
             echo "❌ Deployment Failed"
         }
         success {
-            echo "✅ App is deployed and running on EC2: http://<your-ec2-ip>:3000"
+            echo "✅ App is deployed and running on EC2-> Port:3000"
         }
     }
 }
