@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Notes App</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap 5 Dark Theme (using Bootswatch Darkly) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/darkly/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #121212;
+      color: #fff;
+      padding: 2rem;
+    }
+
+    .card {
+      background-color: #1f1f1f;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+    }
+
+    input, textarea {
+      background-color: #2c2c2c !important;
+      color: #fff !important;
+      border: 1px solid #444 !important;
+    }
+
+    input:focus, textarea:focus {
+      box-shadow: 0 0 5px rgba(100, 200, 255, 0.3);
+    }
+
+    h1 {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+  </style>
+
+  <script>
+    async function fetchNotes() {
+      const res = await fetch('/api/notes');
+      const notes = await res.json();
+      const container = document.getElementById('notes');
+      container.innerHTML = '';
+      notes.forEach(note => {
+        container.innerHTML += `<div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">${note.title}</h5>
+            <p class="card-text">${note.content}</p>
+          </div>
+        </div>`;
+      });
+    }
+
+    window.onload = fetchNotes;
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1> Sample Node-js Notes App</h1>
+    <form method="POST" action="/add-note" class="mb-4">
+      <input class="form-control mb-2" type="text" name="title" placeholder="Note Title" required>
+      <textarea class="form-control mb-2" name="content" placeholder="Note Content" rows="4" required></textarea>
+      <button class="btn btn-primary w-100" type="submit">Add Note</button>
+    </form>
+    <div id="notes"></div>
+  </div>
+</body>
+</html>
