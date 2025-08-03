@@ -29,7 +29,7 @@ It is designed to help **DevOps beginners**, **students**, or **interview candid
 
 ## ⚙️ Project Structure
 .
-├── Dockerfile # For containerizing the Node.js app
+├── Dockerfile # For containerizing the Node.js app \n
 ├── Jenkinsfile # Declarative Jenkins pipeline definition
 ├── app.js # Main app code
 ├── package.json # Node dependencies and scripts
@@ -43,55 +43,50 @@ It is designed to help **DevOps beginners**, **students**, or **interview candid
 ```bash
 git clone https://github.com/<YOUR-USERNAME>/<YOUR-REPO-NAME>.git
 cd <YOUR-REPO-NAME>
+```
 
-2. Run Locally (Optional)
-bash
-Copy
-Edit
+### 2. Run Locally (Optional)
+```bash
 npm install
 npm start
 # Visit http://localhost:3000/
+```
 
-3. Build Docker Image (Optional)
-bash
-Copy
-Edit
+### 3. Build Docker Image (Optional)
+```bash
 docker build -t simple-node-app .
 docker run -p 3000:3000 simple-node-app
+```
 
-👷 Jenkins CI/CD Pipeline
+## 👷 Jenkins CI/CD Pipeline
 Pipeline Flow
-css
-Copy
-Edit
 GitHub Code Push → Jenkins Webhook Trigger → Pipeline Execution
 Pipeline Stages (from Jenkinsfile):
-Checkout: Pull code from GitHub repo
+- Checkout: Pull code from GitHub repo
 
-Install: Install Node.js dependencies using npm install
+- Install: Install Node.js dependencies using npm install
 
-Test: Run tests with npm test (fail-safe: will not stop pipeline on failure)
+- Test: Run tests with npm test (fail-safe: will not stop pipeline on failure)
 
-Docker Build: Build Docker image from source
+- Docker Build: Build Docker image from source
 
-Run Container: Deploy the built Docker image
+- Run Container: Deploy the built Docker image
 
 
-🧰 How to Use This Project
+##🧰 How to Use This Project
 Install Jenkins and required plugins:
 
-Docker
+- Docker
 
-Git
+- Git
 
-NodeJS
+- NodeJS
 
-Connect Jenkins to your GitHub repository.
+- Connect Jenkins to your GitHub repository.
 
-Make sure your Jenkins agent has Docker installed and accessible.
+- Make sure your Jenkins agent has Docker installed and accessible.
 
-Trigger build:
-
+## Trigger build:
 Automatically (via GitHub webhook or polling)
-
+or
 Manually (via Jenkins “Build Now” button)
